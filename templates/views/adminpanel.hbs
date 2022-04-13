@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/84cd854e91.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous" defer></script>    
+    <script src="/js/data.js" defer></script>
+    <script src="/js/main.js" defer></script>
+
+
+    <title>Document</title>
+</head>
+<body onload="viewCourses()">
+    {{!-- {{>header}} --}}
+    <div id="add-modal" class="modal">
+        <div class="modal-content">
+            
+        {{!-- <form action="/course-form"  method="post" enctype="multipart/form-data">  --}}
+            <div class="add-course-form">
+                <h2>Add Course</h2>
+                <input type="text" id="name" required name="name" placeholder="Course Name">
+                <label for="parent">Parent Course</label>
+                <select name="parent" id="parent-course">
+                    {{#each parentCourses}}
+                        <option value="{{this._id}}">{{this.name}}</option>
+                    {{/each}}
+                </select>
+                <textarea name="desc" placeholder="Description" id="desc" cols="30" rows="10"></textarea>
+                <input type="number" id="level" placeholder="Level" name="level">
+                <input type="number" id="period" placeholder="Period" name="period">
+                <input type="number" id="target" placeholder="Target" name="target">
+                <input type="file" id="image" placeholder="Course image" name="image">
+                <input type="text" value="{{token}}" name="token" hidden id="token">
+                {{!-- <input id="submit-button" type="submit" value="Add Course"> --}}
+                <input id="submit-button" onclick="addCourse()" type="submit" value="Add Course">
+                <p id="message"></p>
+            </div>
+        {{!-- </form> --}}
+        </div>
+    </div>
+    {{!-- modal for uploading course images, triggered when edit button on image --}}
+    <div id="upload-modal" class="modal">
+        <div class="modal-content">
+            
+        <form id="upload-course-image" target="upload-response"  method="post" enctype="multipart/form-data"> 
+            <div class="add-course-form">
+                <h2>Upload Image</h2>
+                <input type="file" id="image" placeholder="Course image" name="image">
+        
+                <input id="submit-button" type="submit" value="Upload image">
+                {{!-- <input id="submit-button" onclick="addCourse()" type="submit" value="Add Course"> --}}
+                {{!-- <p id="message"></p> --}}
+                <iframe name="upload-response" style="width: 100%;height:50px"></iframe>
+            </div>
+        </form>
+        </div>
+    </div>
+    {{!-- edit modal --}}
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            
+        {{!-- <form action="/course-form"  method="post" enctype="multipart/form-data">  --}}
+            <div class="add-course-form">
+                <h2>Add Course</h2>
+                <input type="text" id="name" required name="name" placeholder="Course Name">
+                <label for="parent">Parent Course</label>
+                <select name="parent" id="parent-course">
+                    {{#each parentCourses}}
+                        <option value="{{this._id}}">{{this.name}}</option>
+                    {{/each}}
+                </select>
+                <textarea name="desc" placeholder="Description" id="desc" cols="30" rows="10"></textarea>
+                <input type="number" id="level" placeholder="Level" name="level">
+                <input type="number" id="period" placeholder="Period" name="period">
+                <input type="number" id="target" placeholder="Target" name="target">
+                <input type="file" id="image" placeholder="Course image" name="image">
+                <input type="text" value="{{token}}" name="token" hidden id="token">
+                {{!-- <input id="submit-button" type="submit" value="Add Course"> --}}
+                <input id="submit-button" onclick="addCourse()" type="submit" value="Add Course">
+                <p id="message"></p>
+            </div>
+        {{!-- </form> --}}
+        </div>
+    </div>
+     <div class="sub-nav">
+      <div class="user-info">
+        <h6>Welcome, Huzefa</h6>
+        <p>Role: ADMIN</p>
+      </div>
+      <button class="logout">LOGOUT</button>
+    </div>
+    <section id="adminpanel">
+        <div class="parent-course-section">
+            <div class="header">
+            <h3 class="title">Parent Course</h3>
+            <button id="add-parent" class="course-btns">Add</button>
+            <button id="delete-parent" class="course-btns">Delete</button>
+            <button id="edit-parent" class="course-btns">Edit</button>
+            </div>
+            {{#each parentCourses}}
+                <div class="item">{{this.name}}</div>
+            {{/each}}
+      
+        </div>
+        <div class="course-section">
+                <div class="header">
+                    <h3 class="title">Courses</h3>
+                    <input
+                        type="text"
+                        name="search-course"
+                        id="search-course"
+                        class="search-bar"
+                        placeholder="Search"
+                    />
+                    <button id="add-course" class="course-btns">Add</button>
+                    <button id="delete-course" class="course-btns">Delete</button>
+                    <button id="edit-course" onclick="editCourse()" class="course-btns">Edit</button>
+                </div>
+            <div id="course-data" >
+                
+            </div>
+        </div>
+    
+    <template data-user-template>
+        <div class="item" onclick="select(this)">
+            <div style="position: relative">
+                <img src="../images/image3.jpg" alt="" onerror="this.src = '/images/courses.jpg'"/>
+                <button class="upload-btn" onclick="uploadImage(this)" data-id=""><i class="fa fa-pencil" aria-hidden="true"></i></button>
+            </div>
+          <div class="course-info">
+            <p class="id"></p>
+            <h6 class="title">Course Name</h6>
+            <p class="desc">
+            
+            </p>
+            <p class="period">12 Months</p>
+          </div>
+          <div class="favorite">
+            <i class="fa fa-star" aria-hidden="true"></i>
+          </div>
+        </div>
+        {{!-- <div class="course-card">
+            <img class="course-img" src="" alt="" onerror="this.src='https://i.picsum.photos/id/866/200/300.jpg?hmac=rcadCENKh4rD6MAp6V_ma-AyWv641M4iiOpe1RyFHeI'">
+            <div>
+                <div class="course-name"></div>
+                <div class="course-info"></div>
+            </div>
+            <button class="course-btns edit" onclick="random()"><i class="fa fa-pencil" aria-hidden="true"></i></button><button  class="course-btns delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
+        </div> --}}
+    </template>
+    </section>
+   
+</body>
+</html>

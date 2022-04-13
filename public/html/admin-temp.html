@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/84cd854e91.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script src="/js/main.js" defer></script>
+
+    <title>Document</title>
+  </head>
+  <body id="admin">
+    <!-- modal to add courses -->
+    <div id="add-modal" class="modal">
+      <div class="modal-content">
+        <div class="add-course-form">
+          <h2>Add Course</h2>
+          <input
+            type="text"
+            id="name"
+            required
+            name="name"
+            placeholder="Course Name"
+          />
+          <label for="parent">Parent Course</label>
+          <select name="parent" id="parent-course">
+            {{#each parentCourses}}
+            <option value="{{this._id}}">{{this.name}}</option>
+            {{/each}}
+          </select>
+          <textarea
+            name="desc"
+            placeholder="Description"
+            id="desc"
+            cols="30"
+            rows="10"
+          ></textarea>
+          <input type="number" id="level" placeholder="Level" name="level" />
+          <input type="number" id="period" placeholder="Period" name="period" />
+          <input type="number" id="target" placeholder="Target" name="target" />
+          <input
+            type="file"
+            id="image"
+            placeholder="Course image"
+            name="image"
+          />
+          <input type="text" value="{{token}}" name="token" hidden id="token" />
+          {{!--
+          <input id="submit-button" type="submit" value="Add Course" /> --}}
+          <input
+            id="submit-button"
+            onclick="addCourse()"
+            type="submit"
+            value="Add Course"
+          />
+          <p id="message"></p>
+        </div>
+      </div>
+    </div>
+    <div class="sub-nav">
+      <div class="user-info">
+        <h6>Welcome, Huzefa</h6>
+        <p>Role: ADMIN</p>
+      </div>
+      <button class="logout">LOGOUT</button>
+    </div>
+    <section id="adminpanel">
+      <div class="parent-course-section">
+        <div class="header">
+          <h3 class="title">Parent Course</h3>
+          <button id="add-course" class="course-btns">Add</button>
+          <button id="add-course" class="course-btns">Delete</button>
+          <button id="add-course" class="course-btns">Edit</button>
+        </div>
+        <div class="item">Parent Course</div>
+        <div class="item">Parent Course</div>
+        <div class="item">Parent Course</div>
+        <div class="item">Parent Course</div>
+        <div class="item">Parent Course</div>
+      </div>
+      <div class="course-section">
+        <div class="header">
+          <h3 class="title">Courses</h3>
+          <input
+            type="text"
+            name="search-course"
+            id="search-course"
+            class="search-bar"
+            placeholder="Search"
+          />
+          <button id="add-course" class="course-btns">Add</button>
+          <button id="add-course" class="course-btns">Delete</button>
+          <button id="add-course" class="course-btns">Edit</button>
+        </div>
+        <div class="item">
+          <img src="../images/image3.jpg" alt="" />
+          <div class="course-info">
+            <h6 class="title">Course Name</h6>
+            <p class="desc">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
+              ratione voluptate saepe provident
+            </p>
+            <p class="period">12 Months</p>
+          </div>
+          <div class="favorite">
+            <i class="fa fa-star" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div class="item">
+          <img src="../images/image3.jpg" alt="" />
+          <div class="course-info">
+            <h6 class="title">Course Name</h6>
+            <p class="desc">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
+              ratione voluptate saepe provident
+            </p>
+            <p class="period">12 Months</p>
+          </div>
+          <div class="favorite">
+            <i class="fa fa-star" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div class="item">
+          <img src="../images/image3.jpg" alt="" />
+          <div class="course-info">
+            <h6 class="title">Course Name</h6>
+            <p class="desc">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
+              ratione voluptate saepe provident
+            </p>
+            <p class="period">12 Months</p>
+          </div>
+          <div class="favorite">
+            <i class="fa fa-star" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div class="item">
+          <img src="../images/image3.jpg" alt="" />
+          <div class="course-info">
+            <h6 class="title">Course Name</h6>
+            <p class="desc">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
+              ratione voluptate saepe provident
+            </p>
+            <p class="period">12 Months</p>
+          </div>
+          <div class="favorite">
+            <i class="fa fa-star" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div class="item">
+          <img src="../images/image3.jpg" alt="" />
+          <div class="course-info">
+            <h6 class="title">Course Name</h6>
+            <p class="desc">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
+              ratione voluptate saepe provident
+            </p>
+            <p class="period">12 Months</p>
+          </div>
+          <div class="favorite">
+            <i class="fa fa-star" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div class="item">
+          <img src="../images/image3.jpg" alt="" />
+          <div class="course-info">
+            <h6 class="title">Course Name</h6>
+            <p class="desc">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
+              ratione voluptate saepe provident
+            </p>
+            <p class="period">12 Months</p>
+          </div>
+          <div class="favorite">
+            <i class="fa fa-star" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

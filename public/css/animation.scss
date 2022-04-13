@@ -1,0 +1,23 @@
+.reveal {
+    position: relative;
+    transform: translateX(50px);
+    opacity: 0;
+    transition: 2s all ease;
+}
+
+.reveal-left {
+    position: relative;
+    transform: translateX(-50px);
+    opacity: 0;
+    transition: 2s all ease;
+}
+
+.active {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+// .reveal-left.active {
+//     transform: translateX(0);
+//     opacity: 1;
+// }

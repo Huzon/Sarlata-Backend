@@ -1,0 +1,313 @@
+@media screen and (max-width: 1400px) {
+    nav.navbar {
+        .nav-links {
+            .menu {
+                li {
+                    padding: 5px 5px;
+                }
+            }
+        }
+    }
+    #it-consultancy {
+        .content {
+            img {
+                width: 200px;
+                height: 175px;
+            }
+            p {
+                height: 250px;
+                width: 200px;
+            }
+        }
+    }
+    #services {
+        .services {
+            flex-wrap: wrap;
+            .service {
+                img {
+                    width: 200px;
+                    height: 175px;
+                }
+                div {
+                    height: 250px;
+                    width: 200px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .sarlata,
+    b.imp {
+        font-size: 15px;
+    }
+    #it-consultancy {
+        .contents {
+            grid-template-columns: repeat(2, 1fr);
+            row-gap: 20px;
+        }
+        .content {
+            width: 90%;
+            img {
+                max-width: 400px;
+                width: 100%; // width: 200px;
+                // height: 175px;
+            }
+            p {
+                height: auto;
+                min-height: 150px;
+                max-width: 400px;
+                width: 100%;
+            }
+        }
+    }
+    #advantages {
+        flex-direction: column;
+        img {
+            object-fit: contain;
+            width: 100%;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    nav.navbar {
+        .logo {
+            img {
+                height: 60px;
+            }
+        }
+        .nav-links {
+            .hamburger {
+                display: block;
+                font-size: 30px;
+                font-weight: bold;
+            }
+            input[type=checkbox]:checked~.menu {
+                display: block;
+            }
+            .menu {
+                display: none;
+                position: absolute;
+                background-color: $main;
+                right: 0;
+                left: 0;
+                top: 60px;
+                text-align: center;
+                padding: 16px 0;
+                li:hover {
+                    display: inline-block;
+                    background-color: $main-light;
+                    transition: 0.3s ease;
+                }
+                li+li {
+                    margin-top: 12px;
+                }
+                .services {
+                    .dropdown {
+                        left: 50%;
+                        top: 30px;
+                        transform: translateX(35%);
+                        background-color: $main-light;
+                        li:hover {
+                            background-color: $accent2;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    #serviceBadges {
+        display: flex;
+    }
+    #home-title {
+        height: 300px;
+        width: 100%;
+        margin-top: 10vh;
+        .slideshow-container {
+            // max-width: 1000px;
+            width: 100%;
+            height: 300px;
+            position: relative;
+            margin: auto;
+        }
+        .mySlides {
+            display: none;
+            height: 300px;
+            width: 100%;
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+        .slide-info {
+            font-size: 14px;
+            padding: 5px;
+            box-shadow: none;
+            backdrop-filter: blur(5px);
+        }
+        #slide1,
+        #slide2,
+        #slide3,
+        #slide4 {
+            top: auto;
+            left: auto;
+            right: 0px;
+            bottom: 0px;
+            width: 100%;
+            transform: none;
+        }
+    }
+    .query-btn {
+        margin-top: 10px;
+        font-size: 14px;
+        font-weight: normal;
+        padding: 7px;
+    }
+    #popular-courses {
+        width: 95%;
+        .courses {
+            // grid-template-rows: auto auto;
+            grid-template-columns: repeat(9, auto);
+            overflow-x: scroll;
+            .courses-box {
+                width: 200px;
+                .img {
+                    img {
+                        height: 100px;
+                    }
+                }
+                .title {
+                    font-size: 14px;
+                }
+                .join {
+                    margin-top: 10px;
+                }
+            }
+        }
+    }
+    #contact {
+        margin-bottom: 50px;
+        width: 100%;
+        .contact {
+            flex-direction: column;
+            row-gap: 20px;
+            .map {
+                width: 100%;
+                height: 300px;
+            }
+            .contact-types {
+                width: 100%;
+                .contact-form {
+                    form {
+                        .social {
+                            .social-btns {
+                                a {
+                                    font-size: 20px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    //kooapp icon mobile
+    #koo {
+        width: 20px;
+        height: 20px;
+        font-size: .5em;
+        line-height: 20px;
+        border-radius: 2px;
+    }
+    #about {
+        width: 90%;
+        .about {
+            .desc {
+                font-size: 12px;
+            }
+        }
+    }
+    #team {
+        width: 100%;
+        .our-team {
+            flex-direction: column;
+            row-gap: 20px;
+            .contact-info {
+                width: 90%;
+                margin: auto;
+                .info {
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+    #placement {
+        .img-content {
+            width: 100%;
+            flex-direction: column;
+            img {
+                width: 100%;
+                height: auto;
+                border-top-left-radius: 15px;
+                border-top-right-radius: 15px;
+                border-bottom-left-radius: 0px;
+            }
+            div {
+                width: 100%;
+            }
+        }
+    }
+    #study-abroad {
+        width: calc(100% - 10px);
+        margin-bottom: 30px;
+        .study-abroad-div {
+            flex-direction: column;
+            .content {
+                width: auto; // .content-text {}
+                .content-title {
+                    margin: 10px 0;
+                    text-align: center;
+                }
+            }
+        }
+    }
+    #it-consultancy {
+        .content {
+            p {
+                height: auto;
+                min-height: 250px;
+                max-width: 400px;
+                width: 100%;
+            }
+        }
+    }
+    #services {
+        .services {
+            flex-wrap: wrap;
+            .service {
+                width: 45%;
+                text-align: center;
+                img {
+                    width: 100%;
+                    height: 175px;
+                }
+                div {
+                    margin: auto;
+                    height: 250px;
+                    width: 100%;
+                }
+            }
+        }
+    }
+    #ibps {
+        .banking-img {
+            flex-direction: column;
+            img {
+                width: 100%;
+            }
+        }
+    }
+}

@@ -42,7 +42,7 @@ const schema = new mongoose.Schema({
     },
     role: {
         type: String,
-        trim: true,
+        enum: ["admin", "teacher", "student"],
         default: "student",
     },
     avatar: {
@@ -67,13 +67,28 @@ const schema = new mongoose.Schema({
 //schema.method provides method for an instance of the model
 schema.methods.generateNewToken = async function() {
     const user = this; //provides instance of the model
-    const token = await jwt.sign({ _id: user._id.toString() },
-        process.env.JWT_SECRET
-    );
+    const token = jwt.sign({ _id: user._id.toString() }, process.env.JWT_SECRET);
     user.tokens = user.tokens.concat({ token }); //adding data to an array
     user.save();
 
     return token;
+};
+
+schema.methods.getUsers = async function() {
+    const user = this;
+    let users;
+    switch (user.role) {
+        case "admin":
+            users = await User.find({});
+            break;
+        case "teacher":
+            users = await User.find({ role: "student" });
+            break;
+        default:
+            users = user;
+            break;
+    }
+    return users;
 };
 
 //this method runs every time we convert JSON

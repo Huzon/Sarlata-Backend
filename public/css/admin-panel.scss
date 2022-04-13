@@ -1,0 +1,367 @@
+i {
+  margin: 0;
+}
+iframe{
+  border: none;
+  outline:none;
+}
+.search-bar{
+  background-color: #e5e5e5;
+}
+.upload-btn{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#nav {
+  box-shadow: 3px, 5px, 20px, 0 rgba(#000, 0.5);
+  height: 90px;
+  background-color: #fff;
+  box-sizing: border-box;
+  box-shadow: 0 0 10px 5px rgba(#000, 0.2);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  padding: 0 20px;
+}
+.sub-nav{
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 10px;
+  position: relative;
+  background-color: #fff;
+  height: 50px;
+  width: 100%;
+  box-shadow: 0 0 20px 2px rgba(#000, .1);
+  // display: flex;
+
+  align-items: center;
+}
+#admin{
+  // background-color: #e5e5e5;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+#adminpanel {
+  // margin-top: 50px;
+  box-shadow: 0 0 20px 2px rgba(#000, .3);
+  border-radius: 15px;
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+  max-width: 1200px;
+  padding: 16px;
+  // background-color: red;
+  box-sizing: border-box;
+  margin-top: 50px;
+  //   height: 90vh;
+  // width: 100%;
+
+  //   padding: 50px;
+  background-color: #fff;
+  .parent-course-section{
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    .item{
+      padding: 10px;
+      border-radius: 10px;
+      font-size: 16px;
+      width: 100%;
+      text-align: start;
+      border: $light 2px solid;
+    }
+  }
+  .course-section{
+    display: flex;
+      width: 75%;
+    flex-direction: column;
+    row-gap: 20px;
+    .item{
+      padding: 10px;
+      border-radius: 10px;
+      font-size: 16px;
+    
+      text-align: start;
+      align-items: center;
+      border: $light 2px solid;
+      display: flex;
+      
+      column-gap: 10px;
+      
+      img{
+        height: 75px;
+        width: 75px;
+      }
+      .course-info{
+        
+        .desc{
+          font-size: 12px;
+        }
+        .period{
+          font-size: 14px;
+        }
+        .id {
+          display: none;
+        }
+      }
+
+    }
+
+    .item:hover{
+      border: $main-light 2px solid;
+    }
+    .item.selected{
+      border: $main 2px solid;
+    }
+  }
+}
+
+/* The Modal (background) */
+
+.modal {
+  display: none;
+
+  place-items: center;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 100000000;
+  /* Sit on top */
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+}
+/* Modal Content/Box */
+
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  /* 15% from the top and centered */
+  /* padding: 20px; */
+  border: 1px solid #888;
+  border-radius: 10px;
+  width: fit-content;
+  border-radius: 30px;
+  width: -moz-fit-content;
+  /* Could be more or less, depending on screen size */
+}
+
+@media only screen and (max-width: 440px) {
+  .modal-content {
+    border-radius: 0px;
+    width: 100%;
+  }
+}
+/* The Close Button */
+
+.close {
+  color: #aaa;
+  /* float: right; */
+  /* font-size: 28px; */
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.body-login {
+  height: 100vh;
+  background-image: url("../images/photo-1486312338219-ce68d2c6f44d.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+
+.login-div {
+  padding: 50px;
+  width: fit-content;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba($main, 0.4);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.125);
+  form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+  }
+}
+
+.add-course-form {
+  margin: auto;
+  border-radius: 30px;
+  background-color: #fff;
+  box-shadow: 0 0 20px 5px rgba(#000, 0.2);
+  padding: 30px;
+  width: fit-content;
+  row-gap: 15px;
+  display: flex;
+  flex-direction: column;
+}
+input,
+textarea {
+  padding: 10px 20px;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  background-color: #e5e5e5;
+  font {
+    size: 0.6rem;
+  }
+}
+
+input[type="submit"],
+.admin-btns {
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  background-color: $main;
+  color: #fff;
+}
+
+#course-data {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.course-card {
+  border-radius: 10px;
+  padding: 20px;
+  border: 2px solid black;
+  margin-bottom: 10px;
+
+  width: 300px;
+  .course-name {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 16px;
+  }
+  .course-info {
+    font-size: 12px;
+  }
+}
+.course-img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.course-btns {
+  // border-radius: 50%;
+  background-color: $main;
+  width: 50px;
+  color: #fff;
+  padding: 5px;
+  border-radius: 11px;
+  outline: none;
+  border: none;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  font: {
+    size: 10px;
+  }
+  margin-right: 10px;
+}
+.logout{
+  @extend .course-btns;
+  height: 40px;
+}
+// input[type=submit]{
+//     color: #090909;
+//     padding: 0.7em 1.7em;
+//     font-size: 18px;
+//     border-radius: 0.5em;
+//     background: #fff;
+//     border: 1px solid #e8e8e8;
+//     transition: all .3s;
+//     box-shadow: 6px 6px 12px #c5c5c5,
+//                 -6px -6px 12px #ffffff;
+//     margin-bottom: 20px;
+
+// }
+// input[type=submit]:hover {
+//     border: 1px solid white;
+//    }
+
+// input[type=submit]:active {
+// box-shadow: 4px 4px 12px #c5c5c5,
+//             -4px -4px 12px #ffffff;
+// }
+.input-btn-div {
+  --color: #3992e6;
+  position: relative;
+  z-index: 1;
+  width: fit-content;
+  margin-bottom: 20px;
+}
+
+.input-btn-div::before {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  top: -7px;
+  left: -7px;
+  z-index: -5;
+  border-top: 3px solid var(--color);
+  border-left: 3px solid var(--color);
+  transition: 0.5s;
+}
+
+.input-btn-div::after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  bottom: -7px;
+  right: -7px;
+  z-index: -5;
+  border-right: 3px solid var(--color);
+  border-bottom: 3px solid var(--color);
+  transition: 0.5s;
+}
+
+.input-btn-div:hover::before {
+  width: 100%;
+  height: 100%;
+}
+
+.input-btn-div:hover::after {
+  width: 100%;
+  height: 100%;
+}
+
+.input-btn-div input {
+  padding: 0.7em 2em;
+  font-size: 16px;
+  background: #222222;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}

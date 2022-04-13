@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+       <link rel="stylesheet" href="/css/styles.css" />
+
+
+        <title>IT Courses</title>
+</head>
+
+<body>
+{{>header}}
+   <section id="courses">
+       <div class="courses">
+           <div class="course-div">
+               <h1 class="section-title">{{parent_course}}</h1>
+             {{#each courses}}
+               <div class="course">
+                   <div class="course-title">{{this.name}}</div>
+               </div>
+            {{/each}}
+           </div>
+       </div>
+   </section>
+   
+</body>
+</html>

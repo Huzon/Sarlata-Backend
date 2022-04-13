@@ -1,0 +1,35 @@
+#courses {
+    margin-top: 130px;
+}
+
+.course {
+    border: 2px black solid;
+    padding: 20px 30px;
+    margin-bottom: 10px;
+    background-color: $main;
+    color: #fff;
+    transition: background-color .5s;
+    .course-title {
+        // @extend h4;
+        margin-bottom: 10px;
+    }
+    .course-info {
+        opacity: 0;
+        transform: translateY(-1em);
+        justify-content: space-around;
+        height: 0px;
+        transition: .5s transform;
+    }
+}
+
+.course:hover {
+    background-color: #fff;
+    color: $main;
+    .course-info {
+        opacity: 1;
+        // background-color: red;
+        transform: translateY(0em);
+        // display: flex;
+        height: auto;
+    }
+}
