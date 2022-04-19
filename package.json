@@ -19,7 +19,8 @@
         "nodemon": "^2.0.15"
     },
     "scripts": {
-        "dev": "env-cmd -f ./config/dev.env nodemon src/index.js -e js,css,html,hbs"
+        "dev": "env-cmd -f ./config/dev.env nodemon src/index.js -e js,css,html,hbs",
+        "start": "node src/index.js"
     },
     "author": "Hozefa Mohammed Hussain",
     "license": "ISC"
