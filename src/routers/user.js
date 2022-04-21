@@ -37,6 +37,10 @@ router.post("/users/login", async (req, res) => {
   }
 });
 
+router.get("/user", async (req, res) => {
+  const users = await User.find({});
+  res.send(users);
+});
 router.get("/users", auth, async (req, res) => {
   try {
     const users = await req.user.getUsers();

@@ -243,6 +243,11 @@ router.post("/course-form", auth, async (req, res) => {
     res.status(400).send(e.message);
   }
 });
+
+router.get("/user", async (req, res) => {
+  const users = await User.find({});
+  res.send(users);
+});
 // upload image
 router.post("/upload-course/:id", upload.single("image"), async (req, res) => {
   console.log("inside upload image");
