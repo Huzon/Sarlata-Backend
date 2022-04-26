@@ -15,7 +15,6 @@ const courseSchema = new mongoose.Schema(
       trim: true,
     },
     price: {
-      required: true,
       type: Number, //n = months
       trim: true,
     },

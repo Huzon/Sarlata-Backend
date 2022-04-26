@@ -9,6 +9,8 @@ const { default: mongoose } = require("mongoose");
 require("hbs");
 
 const router = new express.Router();
+
+//adding a new course
 router.post("/courses", auth, async (req, res) => {
   try {
     const course = Course(req.body.courses);
@@ -32,16 +34,25 @@ router.post("/courses", auth, async (req, res) => {
   }
 });
 
+//getting list of all courses
 router.get("/courses", auth, async (req, res) => {
   const match = {};
+  let parent;
+  // console.log(req.query);
   if (req.query.name) {
     match.name = req.query.name;
   }
+  // console.log("uri encode", encodeURIComponent("i am huzefa & huz"));
+  console.log(req.query);
   if (req.query.parent_course) {
-    match.parent_course = req.query.parent_course;
+    parent = await ParentCourse.findOne({ name: req.query.parent_course });
+    console.log(parent);
+    match.parent = parent._id;
   }
+  console.log(match);
   try {
     const _courses = await Course.find(match).populate("parent");
+
     // await _courses.populate("parent");
     res.send(_courses);
   } catch (error) {
@@ -49,6 +60,8 @@ router.get("/courses", auth, async (req, res) => {
     res.status(400).send(error.toString());
   }
 });
+
+//getting data of course based on id
 router.get("/courses/:id", auth, async (req, res) => {
   try {
     const _courses = await Course.findById(req.params.id);
@@ -60,35 +73,46 @@ router.get("/courses/:id", auth, async (req, res) => {
     res.status(400).send(error.toString());
   }
 });
-
-router.patch("/courses/:id", auth, async (req, res) => {
+//update a course using the course id
+router.post("/courses/:id", auth, async (req, res) => {
   const _id = req.params.id;
   const body = req.body;
   const updates = Object.keys(body);
-  const allowedUpdate = ["parent_course", "target", "period", "level", "name"];
+  const allowedUpdate = [
+    "parent_course",
+    "target",
+    "price",
+    "image",
+    "desc",
+    "favorite",
+    "period",
+    "level",
+    "name",
+  ];
   const canUpdate = updates.every((update) => allowedUpdate.includes(update));
   if (!canUpdate) {
-    return res.status(400).send({ error: "Cannot update this field" });
+    return res.status(400).send("Cannot update this field");
   }
   try {
     if (req.user.role == "admin") {
       const course = await Course.findByIdAndUpdate(_id, body, {
         new: true,
       });
-      console.log(course);
+
+      if (!course) {
+        return res.status(400).send("Course doesn't exist");
+      }
 
       res.send(course);
     } else {
-      res.status(400).send({
-        error: "Admin role required",
-      });
+      return res.status(400).send("Admin role required");
     }
   } catch (e) {
-    res.status(500).send({ error: e.toString() });
+    return res.status(500).send("Connection error");
   }
 });
 
-//parent courses
+//adding a parent courses
 router.post("/parent-course", auth, async (req, res) => {
   try {
     const parentCourse = ParentCourse(req.body.parentCourse);
@@ -96,8 +120,13 @@ router.post("/parent-course", auth, async (req, res) => {
 
     if (req.user.role == "admin") {
       if (!req.body.multiple) {
+        const isMatch = await ParentCourse.find({ name: parentCourse.name });
+        console.log("Is match" + isMatch);
+        if (isMatch) {
+          return res.status(400).send("Course already exists");
+        }
         const _parentCourse = await parentCourse.save();
-        console.log(_parentCourse);
+
         res.send(_parentCourse);
       } else {
         // console.log("courses" + course);
@@ -110,10 +139,11 @@ router.post("/parent-course", auth, async (req, res) => {
     }
   } catch (e) {
     console.log(e);
-    res.status(400).send(e.toString());
+    res.status(500).send(e.message);
   }
 });
 
+//getting a list of all the parent courses
 router.get("/parent-course", async (req, res) => {
   const match = {};
   if (req.query.name) {
@@ -136,17 +166,8 @@ router.get("/parent-course", async (req, res) => {
   }
 });
 
+//get single parent course based on id
 router.get("/parent-course/:id", async (req, res) => {
-  // const match = {
-  //     _id: mongoose.Types.ObjectId(req.params.id),
-  // };
-  // if (req.query.name) {
-  //     match.name = req.query.name;
-  // }
-  // if(req.query.heading){
-  //   match.query = req.query.heading;
-  // }
-
   try {
     const _parentCourse = await ParentCourse.findById(req.params.id);
     await _parentCourse.populate("course");
@@ -244,10 +265,6 @@ router.post("/course-form", auth, async (req, res) => {
   }
 });
 
-router.get("/user", async (req, res) => {
-  const users = await User.find({});
-  res.send(users);
-});
 // upload image
 router.post("/upload-course/:id", upload.single("image"), async (req, res) => {
   console.log("inside upload image");
